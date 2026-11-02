@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores player progress, inventory, and upgrades.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "cash": { "type": "number" },
+        "inventory": { "type": "object" },
+        "jewelryInventory": { "type": "object" },
+        "backpackCapacity": { "type": "number" },
+        "depthFeet": { "type": "number" },
+        "remainingCaveGems": { "type": "number" },
+        "upgrades": {
+          "type": "object",
+          "properties": {
+            "power": { "type": "number" },
+            "speed": { "type": "number" },
+            "backpack": { "type": "number" },
+            "elevatorSpeed": { "type": "number" },
+            "scanner": { "type": "boolean" },
+            "helmetLight": { "type": "number" }
+          }
+        },
+        "batteries": { "type": "number" },
+        "diamonds": { "type": "number" },
+        "ownedItems": { "type": "array", "items": { "type": "string" } },
+        "explorationProgress": { "type": "array", "items": { "type": "string" } },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "cash", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles indexed by their Auth UID."
+    }
+  }
+}

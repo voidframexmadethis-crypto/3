@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and inventory",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "ownedItems": { "type": "array" }
+      },
+      "required": ["uid", "ownedItems"]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Historical purchase record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "productId": { "type": "string" },
+        "status": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "productId", "status", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and premium inventory"
+    },
+    "/purchases/{purchaseId}": {
+      "schema": "Purchase",
+      "description": "Audit log of all purchases"
+    }
+  }
+}
